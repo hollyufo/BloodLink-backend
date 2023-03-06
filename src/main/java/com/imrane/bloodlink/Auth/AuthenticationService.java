@@ -2,10 +2,10 @@ package com.imrane.bloodlink.Auth;
 
 
 import lombok.RequiredArgsConstructor;
-import org.bankly.Config.JwtService;
-import org.bankly.Entity.AppUser;
-import org.bankly.Entity.Role;
-import org.bankly.Repository.UserRepository;
+import com.imrane.bloodlink.Config.JwtService;
+import com.imrane.bloodlink.Entity.AppUser;
+import com.imrane.bloodlink.Entity.Role;
+import com.imrane.bloodlink.Repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
