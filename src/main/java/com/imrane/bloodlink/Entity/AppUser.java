@@ -10,8 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.annotation.processing.Generated;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +33,22 @@ public class AppUser implements UserDetails {
     private String userName;
     private String password;
     private String email;
+    private String phone;
+    // blood type
+    @ManyToOne
+    private BloodType bloodType;
+    // city
+    @ManyToOne
+    private City city;
+
+    boolean status;
+    // date of birth
+    private Date birthDate;
+
+    // gov id
+    private String govId;
+
+    private String image;
     private boolean isBanned;
 
     @Enumerated(EnumType.STRING)
