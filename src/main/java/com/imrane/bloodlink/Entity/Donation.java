@@ -1,10 +1,7 @@
 package com.imrane.bloodlink.Entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,4 +18,11 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // donator
+    @ManyToOne
+    private AppUser donor;
+
+    // hospital
+    @ManyToOne
+    private Hospital hospital;
 }
