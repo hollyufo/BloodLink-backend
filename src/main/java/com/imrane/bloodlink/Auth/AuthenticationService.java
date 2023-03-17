@@ -29,7 +29,7 @@ public class AuthenticationService {
                 .lastName(request.getLastName())
                 .userName(request.getUserName())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(Role.DONOR)
                 .email(request.getEmail())
                 .build();
         Repository.save(user);

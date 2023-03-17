@@ -2,7 +2,7 @@ package com.imrane.bloodlink.Config;
 
 
 import lombok.RequiredArgsConstructor;
-import org.bankly.Repository.UserRepository;
+import com.imrane.bloodlink.Repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
