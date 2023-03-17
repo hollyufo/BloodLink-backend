@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class HospitalService {
     private final HospitalRepository hospitalRepository;
     private final CityService cityService;
-    private final AppUserService appUserService;
+
 
 
     // create a hospital

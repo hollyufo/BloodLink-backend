@@ -3,8 +3,11 @@ package com.imrane.bloodlink.Service;
 
 import com.imrane.bloodlink.Entity.BloodType;
 import com.imrane.bloodlink.Entity.City;
+import com.imrane.bloodlink.Exceptions.InvalidBloodTypeException;
 import com.imrane.bloodlink.Repository.BloodTypeRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,9 +32,19 @@ public class BloodTypeService {
         return bloodTypeRepository.findByName(name);
     }
     // create blood type
-    public City createBloodType() {
-        // TODO
-        return null;
+    @Transactional
+    public BloodType createBloodType(BloodType bloodType) {
+        try {
+            if (bloodType == null) {
+                throw new InvalidBloodTypeException("Blood type must not be null");
+            }
+            if (bloodType.getName() == null || bloodType.getName().isEmpty()) {
+                throw new InvalidBloodTypeException("Blood type name must not be empty");
+            }
+            return bloodTypeRepository.save(bloodType);
+        } catch (DataIntegrityViolationException e) {
+            throw new InvalidBloodTypeException("Blood type name must be unique");
+        }
     }
     // update blood type
     public void updateBloodType() {
