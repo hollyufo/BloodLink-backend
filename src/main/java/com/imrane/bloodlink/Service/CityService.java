@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class CityService {
 
-    final CityRepository cityRepository;
+    private final CityRepository cityRepository;
     // getting city by id
     public City getCityById(Long id) {
         return cityRepository.findById(id)
