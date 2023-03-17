@@ -25,4 +25,7 @@ public class Hospital {
     // city
     @ManyToOne
     private City city;
+    // manager
+    @ManyToOne
+    private AppUser manager;
 }
