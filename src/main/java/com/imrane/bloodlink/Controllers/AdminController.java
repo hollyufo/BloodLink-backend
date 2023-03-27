@@ -6,6 +6,7 @@ import com.imrane.bloodlink.Dto.Response.HospitalResponse;
 import com.imrane.bloodlink.Entity.Hospital;
 import com.imrane.bloodlink.Service.HospitalService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,9 @@ public class AdminController {
     // creating a new hospital
     @PostMapping("/hospital")
     public ResponseEntity<HospitalResponse> createHospital(@RequestBody HospitalDto hospital){
-        return null;
+        HospitalResponse newHospital = hospitalService.createHospital(hospital);
+        HospitalResponse hospitalResponse = new HospitalResponse(newHospital.getHospital(), "Hospital created successfully");
+        return new ResponseEntity<>(hospitalResponse, HttpStatus.CREATED);
     }
     // view all hospitals
     @GetMapping("/hospitals")
@@ -30,7 +33,8 @@ public class AdminController {
     }
     // get a snigle hospital
     @GetMapping("/hospital/{id}")
-    public Hospital getHospitalById(@PathVariable Long id) {
-        return hospitalService.getHospitalById(id);
+    public ResponseEntity<Hospital> getHospitalById(@PathVariable Long id) {
+        Hospital hospital = hospitalService.getHospitalById(id).getHospital();
+        return new ResponseEntity<>(hospital, HttpStatus.OK);
     }
 }

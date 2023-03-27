@@ -1,10 +1,7 @@
 package com.imrane.bloodlink.Entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,4 +22,8 @@ public class Notification {
     private String body;
 
     private boolean seen;
+
+    // user
+    @ManyToOne
+    private AppUser user;
 }
