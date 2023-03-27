@@ -9,6 +9,8 @@ import com.imrane.bloodlink.Repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class HospitalService {
@@ -38,20 +40,21 @@ public class HospitalService {
         return hospitalRepository.save(hospital);
     }
     // update a hospital
-    public void updateHospital() {
+    public Hospital updateHospital(HospitalDto hospitalDto) {
         // TODO
+        return null;
     }
     // delete a hospital
     public void deleteHospital() {
         // TODO
     }
     // get all hospitals
-    public void getAllHospitals() {
-        // TODO
+    public List<Hospital> getAllHospitals() {
+        return hospitalRepository.findAll();
     }
     // get a hospital by id
-    public void getHospitalById() {
-        // TODO
+    public Hospital getHospitalById(Long id) {
+        return hospitalRepository.findById(id).orElse(null);
     }
     // get a hospital by name
     public void getHospitalByName() {

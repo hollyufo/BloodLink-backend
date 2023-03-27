@@ -5,10 +5,9 @@ import com.imrane.bloodlink.Dto.Request.HospitalDto;
 import com.imrane.bloodlink.Entity.Hospital;
 import com.imrane.bloodlink.Service.HospitalService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -24,7 +23,12 @@ public class AdminController {
     }
     // view all hospitals
     @GetMapping("/hospitals")
-    public void viewAllHospitals() {
-        // TODO
+    public List<Hospital> viewAllHospitals() {
+        return hospitalService.getAllHospitals();
+    }
+    // get a snigle hospital
+    @GetMapping("/hospital/{id}")
+    public Hospital getHospitalById(@PathVariable Long id) {
+        return hospitalService.getHospitalById(id);
     }
 }
