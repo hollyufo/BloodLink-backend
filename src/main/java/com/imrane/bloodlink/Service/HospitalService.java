@@ -5,11 +5,13 @@ import com.imrane.bloodlink.Dto.Request.HospitalDto;
 import com.imrane.bloodlink.Entity.AppUser;
 import com.imrane.bloodlink.Entity.City;
 import com.imrane.bloodlink.Entity.Hospital;
+import com.imrane.bloodlink.Exceptions.HospitalNotFoundException;
 import com.imrane.bloodlink.Repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -54,7 +56,13 @@ public class HospitalService {
     }
     // get a hospital by id
     public Hospital getHospitalById(Long id) {
-        return hospitalRepository.findById(id).orElse(null);
+        Optional<Hospital> hospital = hospitalRepository.findById(id);
+        if (hospital.isPresent()) {
+            return hospital.get();
+        }else {
+            // throw an exception
+            throw new HospitalNotFoundException(id);
+        }
     }
     // get a hospital by name
     public void getHospitalByName() {

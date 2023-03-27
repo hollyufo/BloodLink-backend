@@ -2,9 +2,11 @@ package com.imrane.bloodlink.Controllers;
 
 
 import com.imrane.bloodlink.Dto.Request.HospitalDto;
+import com.imrane.bloodlink.Dto.Response.HospitalResponse;
 import com.imrane.bloodlink.Entity.Hospital;
 import com.imrane.bloodlink.Service.HospitalService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +20,8 @@ public class AdminController {
 
     // creating a new hospital
     @PostMapping("/hospital")
-    public Hospital createHospital(HospitalDto hospital){
-        return hospitalService.createHospital(hospital);
+    public ResponseEntity<HospitalResponse> createHospital(@RequestBody HospitalDto hospital){
+        return null;
     }
     // view all hospitals
     @GetMapping("/hospitals")
