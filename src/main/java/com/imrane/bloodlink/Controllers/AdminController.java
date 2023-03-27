@@ -27,7 +27,7 @@ public class AdminController {
         return new ResponseEntity<>(hospitalResponse, HttpStatus.CREATED);
     }
     // view all hospitals
-    @GetMapping("/hospitals")
+    @GetMapping("/hospital")
     public List<Hospital> viewAllHospitals() {
         return hospitalService.getAllHospitals();
     }

@@ -6,6 +6,7 @@ import com.imrane.bloodlink.Dto.Response.HospitalResponse;
 import com.imrane.bloodlink.Entity.AppUser;
 import com.imrane.bloodlink.Entity.City;
 import com.imrane.bloodlink.Entity.Hospital;
+import com.imrane.bloodlink.Entity.Role;
 import com.imrane.bloodlink.Exceptions.CityNotFoundException;
 import com.imrane.bloodlink.Exceptions.HospitalNotFoundException;
 import com.imrane.bloodlink.Exceptions.InvalidHospitalRequest;
@@ -33,22 +34,17 @@ public class HospitalService {
 
 
     public HospitalResponse createHospital(HospitalDto hospitalDto) {
-        // validating all the inputs from the user
-        // validate the input using javax.validation annotations
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<HospitalDto>> violations = validator.validate(hospitalDto);
 
-        if (!violations.isEmpty()) {
-            // throw a custom exception with BAD_REQUEST status and the list of validation errors
-            throw new InvalidHospitalRequest(violations.toString());
-        }
         // Check if the city and manager exist
         City city = cityService.getCityById(hospitalDto.getCity());
         if(city == null) {
             throw new CityNotFoundException(hospitalDto.getCity());
         }
         AppUser manager = userService.getUserById(hospitalDto.getManager());
+        // chnage the role of the manager to manager
+        manager.setRole(Role.MANAGER);
+        // update the manager in the database
+        userService.updateUser(manager);
         if(manager == null) {
             throw new UserNotFoundException(hospitalDto.getManager());
         }
@@ -111,7 +107,6 @@ public class HospitalService {
         hospital.setAddress(hospitalDto.getAddress());
         hospital.setPhone(hospitalDto.getPhone());
         hospital.setEmail(hospitalDto.getEmail());
-        hospital.setImage(hospitalDto.getImage());
         hospital.setMap(hospitalDto.getMap());
         hospital.setCity(city);
         hospital.setManager(manager);
