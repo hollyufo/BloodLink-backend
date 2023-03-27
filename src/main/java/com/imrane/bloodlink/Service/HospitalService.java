@@ -8,14 +8,20 @@ import com.imrane.bloodlink.Entity.City;
 import com.imrane.bloodlink.Entity.Hospital;
 import com.imrane.bloodlink.Exceptions.CityNotFoundException;
 import com.imrane.bloodlink.Exceptions.HospitalNotFoundException;
+import com.imrane.bloodlink.Exceptions.InvalidHospitalRequest;
 import com.imrane.bloodlink.Exceptions.UserNotFoundException;
 import com.imrane.bloodlink.Repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -28,7 +34,15 @@ public class HospitalService {
 
     public HospitalResponse createHospital(HospitalDto hospitalDto) {
         // validating all the inputs from the user
-        
+        // validate the input using javax.validation annotations
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<HospitalDto>> violations = validator.validate(hospitalDto);
+
+        if (!violations.isEmpty()) {
+            // throw a custom exception with BAD_REQUEST status and the list of validation errors
+            throw new InvalidHospitalRequest(violations.toString());
+        }
         // Check if the city and manager exist
         City city = cityService.getCityById(hospitalDto.getCity());
         if(city == null) {
@@ -44,7 +58,6 @@ public class HospitalService {
                 .address(hospitalDto.getAddress())
                 .phone(hospitalDto.getPhone())
                 .email(hospitalDto.getEmail())
-                .image(hospitalDto.getImage())
                 .map(hospitalDto.getMap())
                 .city(city)
                 .manager(manager)
