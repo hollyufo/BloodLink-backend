@@ -16,6 +16,6 @@ public class HospitalDto {
         private String email;
         private String image;
         private String map;
-        private String city;
-        private String manager;
+        private Long city;
+        private Long manager;
 }
