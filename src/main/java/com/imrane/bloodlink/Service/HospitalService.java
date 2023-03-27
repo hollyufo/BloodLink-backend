@@ -27,6 +27,8 @@ public class HospitalService {
 
 
     public HospitalResponse createHospital(HospitalDto hospitalDto) {
+        // validating all the inputs from the user
+        
         // Check if the city and manager exist
         City city = cityService.getCityById(hospitalDto.getCity());
         if(city == null) {
