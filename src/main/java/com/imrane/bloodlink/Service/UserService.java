@@ -37,4 +37,10 @@ public class UserService {
         userRepository.deleteById(id);
         return "User deleted";
     }
+
+    // update user role
+    public AppUser updateUser(AppUser user) {
+        // saving the user
+        return userRepository.save(user);
+    }
 }

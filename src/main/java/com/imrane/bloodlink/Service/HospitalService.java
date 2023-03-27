@@ -41,10 +41,12 @@ public class HospitalService {
             throw new CityNotFoundException(hospitalDto.getCity());
         }
         AppUser manager = userService.getUserById(hospitalDto.getManager());
-        // chnage the role of the manager to manager
-        manager.setRole(Role.MANAGER);
-        // update the manager in the database
-        userService.updateUser(manager);
+        // chcecking if the role of the manager is manager
+        if(manager.getRole() != Role.MANAGER) {
+            // change the role of the user to manager
+            manager.setRole(Role.MANAGER);
+            userService.updateUser(manager);
+        }
         if(manager == null) {
             throw new UserNotFoundException(hospitalDto.getManager());
         }
