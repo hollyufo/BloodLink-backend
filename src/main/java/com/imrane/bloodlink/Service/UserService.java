@@ -43,4 +43,9 @@ public class UserService {
         // saving the user
         return userRepository.save(user);
     }
+
+    // get list of all users
+    public List<AppUser> getAllUsers() {
+        return userRepository.findAll();
+    }
 }
