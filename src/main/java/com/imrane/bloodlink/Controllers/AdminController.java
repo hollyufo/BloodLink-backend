@@ -22,46 +22,87 @@ public class AdminController {
     private final HospitalService hospitalService;
     private final UserService userService;
 
-    // creating a new hospital
+    /**
+     * Create a new hospital
+     *
+     * @param hospital the hospital information to be created
+     * @return the newly created hospital information along with a success message
+     */
     @PostMapping("/hospital")
     public ResponseEntity<HospitalResponse> createHospital(@RequestBody HospitalDto hospital){
         HospitalResponse newHospital = hospitalService.createHospital(hospital);
         HospitalResponse hospitalResponse = new HospitalResponse(newHospital.getHospital(), "Hospital created successfully");
         return new ResponseEntity<>(hospitalResponse, HttpStatus.CREATED);
     }
-    // view all hospitals
+
+
+    /**
+     * Get all hospitals
+     *
+     * @return a list of all hospitals
+     */
     @GetMapping("/hospital")
     public List<Hospital> viewAllHospitals() {
         return hospitalService.getAllHospitals();
     }
-    // get a snigle hospital
+
+
+    /**
+     * Get a single hospital by id
+     *
+     * @param id the id of the hospital to be retrieved
+     * @return the hospital information with the given id
+     */
     @GetMapping("/hospital/{id}")
     public ResponseEntity<Hospital> getHospitalById(@PathVariable Long id) {
         Hospital hospital = hospitalService.getHospitalById(id).getHospital();
         return new ResponseEntity<>(hospital, HttpStatus.OK);
     }
-    // update a hospital
+
+
+    /**
+     * Update a hospital with the given id
+     *
+     * @param id the id of the hospital to be updated
+     * @param hospitalDto the updated hospital information
+     * @return the updated hospital information along with a success message
+     */
     @PutMapping("/hospital/{id}")
     public ResponseEntity<HospitalResponse> updateHospital(@PathVariable Long id, @RequestBody HospitalDto hospitalDto) {
         HospitalResponse hospitalResponse = hospitalService.updateHospital(id, hospitalDto);
         return new ResponseEntity<>(hospitalResponse, HttpStatus.OK);
     }
 
-    // list of all the users
+    /**
+     * Get all users
+     *
+     * @return a list of all users
+     */
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getAllUsers() {
         List<AppUser> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    // list of users by role
+    /**
+     * Get all users with the given role
+     *
+     * @param role the role of the users to be retrieved
+     * @return a list of all users with the given role
+     */
+
     @GetMapping("/users/{role}")
     public ResponseEntity<List<AppUser>> getUsersByRole(@PathVariable String role) {
         List<AppUser> users = userService.getUsersByRole(role);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    // list of users by city
+    /**
+     * Get all users in the given city
+     *
+     * @param id the id of the city of the users to be retrieved
+     * @return a list of all users in the given city
+     */
     @GetMapping("/users/city/{id}")
     public ResponseEntity<List<AppUser>> getUsersByCity(@PathVariable Long id) {
         List<AppUser> users = userService.getUsersByCity(id);
