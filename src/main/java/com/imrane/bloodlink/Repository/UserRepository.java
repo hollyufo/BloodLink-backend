@@ -1,6 +1,7 @@
 package com.imrane.bloodlink.Repository;
 
 import com.imrane.bloodlink.Entity.AppUser;
+import com.imrane.bloodlink.Entity.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,5 @@ public interface UserRepository extends JpaRepository<AppUser, Long> {
 
     List<AppUser> findAllByRole(String role);
 
-    List<AppUser> findAllByCity(String city);
+    List<AppUser> findAllByCity(City city);
 }

@@ -60,5 +60,11 @@ public class AdminController {
         List<AppUser> users = userService.getUsersByRole(role);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-    
+
+    // list of users by city
+    @GetMapping("/users/city/{id}")
+    public ResponseEntity<List<AppUser>> getUsersByCity(@PathVariable Long id) {
+        List<AppUser> users = userService.getUsersByCity(id);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 }

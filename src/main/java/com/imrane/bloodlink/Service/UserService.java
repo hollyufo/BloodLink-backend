@@ -2,6 +2,7 @@ package com.imrane.bloodlink.Service;
 
 
 import com.imrane.bloodlink.Entity.AppUser;
+import com.imrane.bloodlink.Entity.City;
 import com.imrane.bloodlink.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final CityService cityService;
 
     // getting list of users by role
     public List<AppUser> getUsersByRole(String role) {
@@ -25,7 +27,10 @@ public class UserService {
     }
 
     // list of users by city
-    public List<AppUser> getUsersByCity(String city) {
+    public List<AppUser> getUsersByCity(Long id) {
+        // getting the city by id
+        City city = cityService.getCityById(id);
+
         return userRepository.findAllByCity(city);
     }
     // getting user by email
