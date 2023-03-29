@@ -2,6 +2,7 @@ package com.imrane.bloodlink.Controllers;
 
 
 import com.imrane.bloodlink.Dto.Request.HospitalDto;
+import com.imrane.bloodlink.Dto.Response.AppUserResponse;
 import com.imrane.bloodlink.Dto.Response.HospitalResponse;
 import com.imrane.bloodlink.Entity.AppUser;
 import com.imrane.bloodlink.Entity.Hospital;
@@ -107,5 +108,10 @@ public class AdminController {
     public ResponseEntity<List<AppUser>> getUsersByCity(@PathVariable Long id) {
         List<AppUser> users = userService.getUsersByCity(id);
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<AppUserResponse> viewProfile() {
+        return new ResponseEntity<>(userService.viewProfile(), HttpStatus.OK);
     }
 }

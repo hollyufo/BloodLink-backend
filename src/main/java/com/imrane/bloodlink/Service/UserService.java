@@ -1,10 +1,13 @@
 package com.imrane.bloodlink.Service;
 
 
+import com.imrane.bloodlink.Dto.Response.AppUserResponse;
 import com.imrane.bloodlink.Entity.AppUser;
 import com.imrane.bloodlink.Entity.City;
 import com.imrane.bloodlink.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,11 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final CityService cityService;
+
+    // find user by email
+    public AppUser findUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
 
     // getting list of users by role
     public List<AppUser> getUsersByRole(String role) {
@@ -52,5 +60,18 @@ public class UserService {
     // get list of all users
     public List<AppUser> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    // get the user from the context and return the user information
+    public AppUserResponse viewProfile() {
+        // getting the user from the context
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AppUser user = (AppUser) authentication.getPrincipal();
+
+        // returning the user information
+        return AppUserResponse.builder()
+                .appUser(user)
+                .message("User information retrieved successfully")
+                .build();
     }
 }
