@@ -45,6 +45,9 @@ public class AppUser implements UserDetails {
     // date of birth
     private Date birthDate;
 
+    // gnder
+    private String gender;
+
     // gov id
     private String govId;
 

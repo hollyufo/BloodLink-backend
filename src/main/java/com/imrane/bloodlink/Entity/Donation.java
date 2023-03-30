@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -25,4 +27,6 @@ public class Donation {
     // hospital
     @ManyToOne
     private Hospital hospital;
+
+    private Date date;
 }
