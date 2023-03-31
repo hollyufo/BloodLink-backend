@@ -3,8 +3,6 @@ package com.imrane.bloodlink.Controllers;
 
 import com.imrane.bloodlink.Dto.Response.AppUserResponse;
 import com.imrane.bloodlink.Dto.Response.DonationResponse;
-import com.imrane.bloodlink.Entity.AppUser;
-import com.imrane.bloodlink.Entity.Donation;
 import com.imrane.bloodlink.Service.DonationService;
 import com.imrane.bloodlink.Service.UserService;
 import lombok.RequiredArgsConstructor;

@@ -9,20 +9,12 @@ import com.imrane.bloodlink.Entity.Hospital;
 import com.imrane.bloodlink.Entity.Role;
 import com.imrane.bloodlink.Exceptions.CityNotFoundException;
 import com.imrane.bloodlink.Exceptions.HospitalNotFoundException;
-import com.imrane.bloodlink.Exceptions.InvalidHospitalRequest;
 import com.imrane.bloodlink.Exceptions.UserNotFoundException;
 import com.imrane.bloodlink.Repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
