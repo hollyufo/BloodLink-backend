@@ -33,8 +33,5 @@ public class UserController {
     public ResponseEntity<DonationResponse> getDonations() {
         return new ResponseEntity<>(donationService.getDonationsByDonor(), HttpStatus.OK);
     }
-    @GetMapping("/donations/{id}")
-    public ResponseEntity<DonationResponse> getDonationsByHospital(@PathVariable Long id) {
-        return new ResponseEntity<>(donationService.getDonationsByDonor(id), HttpStatus.OK);
-    }
+
 }
