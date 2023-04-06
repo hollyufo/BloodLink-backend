@@ -74,4 +74,15 @@ public class UserService {
                 .message("User information retrieved successfully")
                 .build();
     }
+    public AppUserResponse updateProfile() {
+        // getting the user from the context
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AppUser user = (AppUser) authentication.getPrincipal();
+
+        // returning the user information
+        return AppUserResponse.builder()
+                .appUser(user)
+                .message("User information retrieved successfully")
+                .build();
+    }
 }

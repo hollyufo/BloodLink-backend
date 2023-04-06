@@ -4,6 +4,7 @@ package com.imrane.bloodlink.Service;
 import com.imrane.bloodlink.Dto.Response.DonationResponse;
 import com.imrane.bloodlink.Entity.AppUser;
 import com.imrane.bloodlink.Entity.Donation;
+import com.imrane.bloodlink.Entity.Hospital;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +20,7 @@ public class DonationService {
     private final DonationRespository donationRepository;
 
     // get all donations by a hospital
-    public List<Donation> getDonationsByHospital(AppUser hospital) {
+    public List<Donation> getDonationsByHospital(Hospital hospital) {
         return donationRepository.findAllByHospital(hospital);
     }
 
@@ -28,6 +29,17 @@ public class DonationService {
         // getting the logged in user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AppUser donor = (AppUser) authentication.getPrincipal();
+        // getting all donations by donor
+        List<Donation> donations = donationRepository.findAllByDonor(donor);
+        // return the list of donations
+        return DonationResponse.builder()
+                .message("Donations by " + donor.getUsername())
+                .donations(donations)
+                .build();
+    }
+    public DonationResponse getDonationsByDonor(Long id){
+        // getting the logged in user
+        AppUser donor = (AppUser) donationRepository.findDonationById(id).getDonor();
         // getting all donations by donor
         List<Donation> donations = donationRepository.findAllByDonor(donor);
         // return the list of donations
