@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,26 @@ import { Observable } from 'rxjs';
 
 export class AuthServiceService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private accessToken: string ="";
 
-  constructor(private jwtHelper: JwtHelperService) {}
+  constructor(private jwtHelper: JwtHelperService, private http: HttpClient) {}
+
+  login(username: string, password: string): any {
+    const body =
+    {
+      "email" : username,
+      "password" : password
+    }
+    return this.http.post(`http://localhost:8081/api/v1/auth/authenticate`, body).pipe(
+      tap((response: any) => {
+        this.accessToken = response;
+        console.log(this.accessToken)
+        console.log('testing service')
+        localStorage.setItem('accessToken', this.accessToken);
+      })
+    );
+  }
+
 
   setToken(token: string | null) {
     if (token) {

@@ -1,1 +1,10 @@
-<p>login works!</p>
+<div class="bg">
+  <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Welcome to BloodLink</h2>
+    <input type="text" name="email" formControlName="email" placeholder="email">
+    <input type="password" name="password" id="password" formControlName="password"  placeholder="Password">
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <p class="message">Not registered? <a href="#">Create an account</a></p>
+  </form>
+
+</div>
