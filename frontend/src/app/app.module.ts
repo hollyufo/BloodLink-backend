@@ -8,12 +8,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Components/login/login.component';
 import { HomeComponent } from './Components/home/home.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/AuthInterceptor';
+import { HeaderComponent } from './Components/Header/header.component';
+import { PostsComponent } from './Components/posts/posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    HeaderComponent,
+    PostsComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,12 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     })
   ],
   providers: [
-    JwtHelperService
+    JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
