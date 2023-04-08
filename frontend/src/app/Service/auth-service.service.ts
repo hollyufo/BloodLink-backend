@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, tap } from 'rxjs';
@@ -19,14 +19,21 @@ export class AuthServiceService {
       "email" : username,
       "password" : password
     }
-    return this.http.post(`http://localhost:8081/api/v1/auth/authenticate`, body).pipe(
-      tap((response: any) => {
-        this.accessToken = response;
-        console.log(this.accessToken)
-        console.log('testing service')
-        localStorage.setItem('accessToken', this.accessToken);
-      })
-    );
+    console.log(body)
+    const url = `http://localhost:8081/api/v1/auth/authenticate`
+    return this.http.post(url, body, { observe: 'response' }).subscribe(
+      (response: HttpResponse<any>) => {
+        console.log('Response status code:', response.status);
+        const token = response.body ? response.body.token : null; // Check if response body is null
+        console.log('Token:', token);
+        // saving the token in local storage
+        this.setToken(token);
+      },
+      (error)=> {
+        console.log(error)
+        alert('Invalid Credentials');
+      }
+    )
   }
 
 
