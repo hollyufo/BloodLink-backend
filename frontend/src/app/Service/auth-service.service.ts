@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -10,8 +11,9 @@ import { Observable, tap } from 'rxjs';
 export class AuthServiceService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private accessToken: string ="";
+  role: string | null = "";
 
-  constructor(private jwtHelper: JwtHelperService, private http: HttpClient) {}
+  constructor(private jwtHelper: JwtHelperService, private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string): any {
     const body =
@@ -28,6 +30,8 @@ export class AuthServiceService {
         console.log('Token:', token);
         // saving the token in local storage
         this.setToken(token);
+        // redirecting to the home page
+        this.router.navigate(['/home']);
       },
       (error)=> {
         console.log(error)
@@ -50,6 +54,15 @@ export class AuthServiceService {
   isAuthenticated(): boolean {
     const token = this.getToken();
     return !!token && !this.jwtHelper.isTokenExpired(token);
+  }
+
+  getrole(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken.authorities[0].authority;
+    }
+    return null;
   }
 }
 

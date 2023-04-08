@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="container mt-6">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">hospitale</th>
+        <th scope="col">date</th>
+        <th scope="col">Hospital</th>
+        <th scope="col">by </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donation of donations">
+        <th scope="row">1</th>
+        <td>{{ donation.id }}</td>
+        <td>{{ donation.date | date }}</td>
+        <td>{{ donation.hospital.name }}</td>
+        <td>{{ donation.hospital.manager.firstName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

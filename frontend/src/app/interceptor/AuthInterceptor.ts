@@ -9,6 +9,10 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const authToken = localStorage.getItem('JWT_TOKEN');
+    // Check if the request is for the login endpoint
+    if (request.url.includes('login')) {
+      return next.handle(request);
+    }
     if (authToken) {
       request = request.clone({
         setHeaders: {

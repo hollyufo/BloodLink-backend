@@ -12,6 +12,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/AuthInterceptor';
 import { HeaderComponent } from './Components/Header/header.component';
 import { PostsComponent } from './Components/posts/posts.component';
+import { LandingpageComponent } from './Components/landingpage/landingpage.component';
+import { DonationsComponent } from './Components/donations/donations.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { PostsComponent } from './Components/posts/posts.component';
     HomeComponent,
     HeaderComponent,
     PostsComponent,
+    LandingpageComponent,
+    DonationsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
