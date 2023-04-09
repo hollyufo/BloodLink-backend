@@ -12,6 +12,9 @@
         <li *ngIf="role === 'DONOR'" class="nav-item">
           <a class="nav-link" routerLink="/donation">My Donations</a>
         </li>
+        <li *ngIf="role === 'MANAGER'" class="nav-item">
+          <a class="nav-link" routerLink="/makedonation">Donations</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/hospitals">Hospitals</a>
         </li>
@@ -26,11 +29,14 @@
           </li>
       </ul>
 
-      <form class="d-flex" role="search">
-        <button *ngIf="role === 'ADMIN'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
+      <form class="d-flex" role="search" *ngIf="router.url === '/hospitals'" >
+        <button *ngIf="role === 'MANAGER'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Add Hospital
         </button>
       </form>
+      <button *ngIf="role === 'MANAGER'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Donation
+      </button>
     </div>
   </div>
 </nav>

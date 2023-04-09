@@ -5,7 +5,9 @@ import com.imrane.bloodlink.Dto.Request.HospitalDto;
 import com.imrane.bloodlink.Dto.Response.AppUserResponse;
 import com.imrane.bloodlink.Dto.Response.HospitalResponse;
 import com.imrane.bloodlink.Entity.AppUser;
+import com.imrane.bloodlink.Entity.City;
 import com.imrane.bloodlink.Entity.Hospital;
+import com.imrane.bloodlink.Service.CityService;
 import com.imrane.bloodlink.Service.HospitalService;
 import com.imrane.bloodlink.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,14 @@ public class AdminController {
 
     private final HospitalService hospitalService;
     private final UserService userService;
+    private final CityService cityService;
 
+
+
+    @GetMapping("/city")
+    public ResponseEntity<List<City>> getAllCities() {
+        return new ResponseEntity<>(cityService.getAllCities(), HttpStatus.OK);
+    }
     /**
      * Create a new hospital
      *

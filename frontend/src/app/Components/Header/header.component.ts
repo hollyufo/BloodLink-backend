@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/Service/auth-service.service';
 
 @Component({
@@ -7,7 +8,9 @@ import { AuthServiceService } from 'src/app/Service/auth-service.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
- constructor(private authService: AuthServiceService) { }
+ constructor(private authService: AuthServiceService, public router: Router) { }
  // getting the role
+ 
   role = this.authService.getrole();
+
 }

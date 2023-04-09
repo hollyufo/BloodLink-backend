@@ -16,6 +16,7 @@ import { LandingpageComponent } from './Components/landingpage/landingpage.compo
 import { DonationsComponent } from './Components/donations/donations.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { HospitalsComponent } from './Components/hospitals/hospitals.component';
+import { ManagerdonationComponent } from './Components/managerdonation/managerdonation.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HospitalsComponent } from './Components/hospitals/hospitals.component';
     DonationsComponent,
     ProfileComponent,
     HospitalsComponent,
+    ManagerdonationComponent,
   ],
   imports: [
     BrowserModule,

@@ -112,6 +112,19 @@ public class HospitalService {
                 .message("Hospital updated successfully")
                 .build();
     }
+    public Hospital gethospitalbymaager(AppUser manager){
+        return hospitalRepository.findByManager(manager);
+    }
+
+    public Hospital getHospitalBy1Id(Long hospitalId) {
+        // Check if the hospital exists
+        Hospital hospital = hospitalRepository.findById(hospitalId).orElse(null);
+        if(hospital == null) {
+            throw new HospitalNotFoundException(hospitalId);
+        }
+
+        return hospital;
+    }
 
     // delete a hospital
     public void deleteHospital() {
