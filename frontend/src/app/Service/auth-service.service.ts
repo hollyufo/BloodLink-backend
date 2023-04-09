@@ -53,6 +53,10 @@ export class AuthServiceService {
 
   isAuthenticated(): boolean {
     const token = this.getToken();
+    // if token is expired, remove it from local storage
+    if (this.jwtHelper.isTokenExpired(token)) {
+      localStorage.removeItem(this.JWT_TOKEN);
+    }
     return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 

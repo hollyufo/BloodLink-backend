@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">hospitale</th>
+        <th scope="col">id</th>
         <th scope="col">date</th>
         <th scope="col">Hospital</th>
         <th scope="col">by </th>
@@ -16,7 +16,7 @@
         <td>{{ donation.id }}</td>
         <td>{{ donation.date | date }}</td>
         <td>{{ donation.hospital.name }}</td>
-        <td>{{ donation.hospital.manager.firstName }}</td>
+        <td>{{ donation.hospital.manager.firstName  }} {{ donation.hospital.manager.lastName  }}</td>
       </tr>
     </tbody>
   </table>

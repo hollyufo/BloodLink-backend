@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Hospital name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">City</th>
+        <th scope="col">manager</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hospital of hospitals">
+        <th scope="row">{{ hospital.id }}</th>
+        <th scope="row">{{ hospital.name }}</th>
+        <td>{{ hospital.address }}</td>
+        <td>{{ hospital.phone }}</td>
+        <td>{{ hospital.email }}</td>
+        <td>{{ hospital.city.name }}</td>
+        <td>{{ hospital.manager.firstName }} {{ hospital.manager.lastName }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ import { PostsComponent } from './Components/posts/posts.component';
 import { LandingpageComponent } from './Components/landingpage/landingpage.component';
 import { DonationsComponent } from './Components/donations/donations.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { HospitalsComponent } from './Components/hospitals/hospitals.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     LandingpageComponent,
     DonationsComponent,
     ProfileComponent,
+    HospitalsComponent,
   ],
   imports: [
     BrowserModule,
